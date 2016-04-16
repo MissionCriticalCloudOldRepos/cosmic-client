@@ -287,12 +287,6 @@
                                                     id: 'VMDK',
                                                     description: 'VMDK'
                                                 });
-                                            } else if (args.hypervisor == "BareMetal") {
-                                                //formatSelect.append("<option value='BareMetal'>BareMetal</option>");
-                                                items.push({
-                                                    id: 'BareMetal',
-                                                    description: 'BareMetal'
-                                                });
                                             }
                                             args.response.success({
                                                 data: items
@@ -624,11 +618,6 @@
                                                 items.push({
                                                     id: 'VMDK',
                                                     description: 'VMDK'
-                                                });
-                                            } else if (args.hypervisor == "BareMetal") {
-                                                items.push({
-                                                    id: 'BareMetal',
-                                                    description: 'BareMetal'
                                                 });
                                             }
                                             args.response.success({

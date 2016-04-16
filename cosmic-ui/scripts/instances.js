@@ -2564,10 +2564,6 @@
 
             allowedActions.push("resetPassword");
 
-            if (jsonObj.hypervisor == "BareMetal") {
-                allowedActions.push("createTemplate");
-            }
-
             allowedActions.push("viewConsole");
         } else if (jsonObj.state == 'Stopped') {
             allowedActions.push("edit");
@@ -2594,9 +2590,6 @@
                 allowedActions.push("detachISO");
             }
             allowedActions.push("resetPassword");
-            if (jsonObj.hypervisor == "BareMetal") {
-                allowedActions.push("createTemplate");
-            }
 
             if (isAdmin() || isDomainAdmin()) {
                 allowedActions.push("assignVmToAnotherAccount");

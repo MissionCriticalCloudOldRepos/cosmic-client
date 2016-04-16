@@ -76,9 +76,6 @@
             case 'KVM':
                 hypervisorAttr = 'kvmnetworklabel';
                 break;
-            case 'BareMetal':
-                hypervisorAttr = 'baremetalnetworklabel';
-                break;
             case 'Ovm3':
                 hypervisorAttr = 'ovm3networklabel';
                 break;
@@ -465,13 +462,7 @@
                                     var nonSupportedHypervisors = {};
                                     if (args.context.zones[0]['network-model'] == "Advanced" && args.context.zones[0]['zone-advanced-sg-enabled'] == "on") {
                                         firstOption = "KVM";
-                                        nonSupportedHypervisors["BareMetal"] = 1;
-                                        nonSupportedHypervisors["Ovm"] = 1;
                                         nonSupportedHypervisors["Ovm3"] = 1;
-                                    }
-
-                                    if (args.context.zones[0]['network-model'] == "Advanced") { //CLOUDSTACK-7681: UI > zone wizard > Advanced zone > hypervisor => do not support BareMetal
-                                        nonSupportedHypervisors["BareMetal"] = 1;
                                     }
 
                                     if (items != null) {
@@ -932,28 +923,7 @@
 
                     var $form = args.$form;
 
-                    if (selectedClusterObj.hypervisortype == "BareMetal") {
-                        $form.find('[rel=hostname]').css('display', 'block');
-                        $form.find('[rel=username]').css('display', 'block');
-                        $form.find('[rel=password]').css('display', 'block');
-
-                        $form.find('[rel=baremetalCpuCores]').css('display', 'block');
-                        $form.find('[rel=baremetalCpu]').css('display', 'block');
-                        $form.find('[rel=baremetalMemory]').css('display', 'block');
-                        $form.find('[rel=baremetalMAC]').css('display', 'block');
-
-                        $form.find('[rel=vcenterHost]').hide();
-
-                        $form.find('[rel=agentUsername]').hide();
-                        $form.find('[rel=agentPassword]').hide();
-
-                        $form.find('.form-item[rel=agentUsername]').hide();
-                        $form.find('.form-item[rel=agentPassword]').hide();
-                        $form.find('.form-item[rel=agentPort]').hide();
-                        $form.find('.form-item[rel=ovm3vip]').hide();
-                        $form.find('.form-item[rel=ovm3pool]').hide();
-                        $form.find('.form-item[rel=ovm3cluster]').hide();
-                   } else if (selectedClusterObj.hypervisortype == "Ovm3") {
+                    if (selectedClusterObj.hypervisortype == "Ovm3") {
                         $form.find('.form-item[rel=hostname]').css('display', 'inline-block');
                         $form.find('.form-item[rel=username]').css('display', 'inline-block');
                         $form.find('.form-item[rel=password]').css('display', 'inline-block');
@@ -1020,37 +990,6 @@
                         isPassword: true
                     },
                     //input_group="general" ends here
-
-                    //input_group="BareMetal" starts here
-                    baremetalCpuCores: {
-                        label: 'label.num.cpu.cores',
-                        validation: {
-                            required: true
-                        },
-                        isHidden: true
-                    },
-                    baremetalCpu: {
-                        label: 'label.cpu.mhz',
-                        validation: {
-                            required: true
-                        },
-                        isHidden: true
-                    },
-                    baremetalMemory: {
-                        label: 'label.memory.mb',
-                        validation: {
-                            required: true
-                        },
-                        isHidden: true
-                    },
-                    baremetalMAC: {
-                        label: 'label.host.MAC',
-                        validation: {
-                            required: true
-                        },
-                        isHidden: true
-                    },
-                    //input_group="BareMetal" ends here
 
                     //input_group="OVM3" starts here
                     agentPort: {
@@ -2568,7 +2507,7 @@
                                                                                                                                                     return; //Job has not completed
                                                                                                                                                 } else {
                                                                                                                                                     clearInterval(updateNetworkServiceProviderIntervalID);
-                                                                                                                                                    if (result.jobstatus == 1) { //baremetal provider has been enabled successfully
+                                                                                                                                                    if (result.jobstatus == 1) {
 
                                                                                                                                                     } else if (result.jobstatus == 2) {
                                                                                                                                                         alert(_s(result.jobresult.errortext));
@@ -3698,15 +3637,9 @@
                             success: function(json) {
                                 args.data.returnedGuestNetwork.returnedVlanIpRange = json.createvlaniprangeresponse.vlan;
 
-                                if (args.data.zone.hypervisor == "BareMetal") { //if hypervisor is BareMetal, zone creation is completed at this point.
-                                    complete({
-                                        data: args.data
-                                    });
-                                } else {
-                                    stepFns.addCluster({
-                                        data: args.data
-                                    });
-                                }
+                                stepFns.addCluster({
+                                    data: args.data
+                                });
                             },
                             error: function(XMLHttpResponse) {
                                 var errorMsg = parseXMLHttpResponse(XMLHttpResponse);
@@ -3859,20 +3792,6 @@
                     $.extend(data, {
                         url: url
                     });
-
-                    if (args.data.cluster.hypervisor == "BareMetal") {
-                        $.extend(data, {
-                            cpunumber: args.data.host.baremetalCpuCores,
-                            cpuspeed: args.data.host.baremetalCpu,
-                            memory: args.data.host.baremetalMemory,
-                            hostmac: args.data.host.baremetalMAC
-                        });
-                    } else if (args.data.cluster.hypervisor == "Ovm") {
-                        $.extend(data, {
-                            agentusername: args.data.host.agentUsername,
-                            agentpassword: args.data.host.agentPassword
-                        });
-                    }
 
                     var addHostAjax = function() {
                         $.ajax({

@@ -1234,17 +1234,6 @@
                             return false;
                     }
 
-                    //when hypervisor is BareMetal (begin)
-                    var data = getData($wizard);
-                    if (('zone' in data) && (data.zone.hypervisor == 'BareMetal')) {
-                        if ($('.zone-wizard:visible').find('#add_zone_guest_traffic_desc:visible').size() > 0) { //$steps.filter(':visible').index() == 6
-                            showStep('launch');
-                            completeAction();
-                            return false;
-                        }
-                    }
-                    //when hypervisor is BareMetal (end)
-
                     if (!$target.closest('.button.next.final').size())
                         showStep($steps.filter(':visible').index() + 2);
                     else {

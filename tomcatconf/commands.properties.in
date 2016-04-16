@@ -1,20 +1,3 @@
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
-# with the License.  You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, either express or implied.  See the License for the
-# specific language governing permissions and limitations
-# under the License.
-
 ### bitmap of permissions at the end of each classname, 1 = ADMIN, 2 = RESOURCE_DOMAIN_ADMIN, 4 = DOMAIN_ADMIN, 8 = USER
 ### Please standardize naming conventions to camel-case (even for acronyms).
 
@@ -193,7 +176,6 @@ listLoadBalancerRuleInstances=15
 updateLoadBalancerRule=15
 
 ##### SSL offload commands
-
 uploadSslCert=15
 deleteSslCert=15
 listSslCerts=15
@@ -309,11 +291,6 @@ addSecondaryStorage=1
 updateHostPassword=1
 releaseHostReservation=1
 
-#### VmWare DC
-addVmwareDc=1
-removeVmwareDc=1
-listVmwareDcs=1
-
 #### volume commands
 attachVolume=15
 uploadVolume=15
@@ -375,7 +352,6 @@ createRemoteAccessVpn=15
 deleteRemoteAccessVpn=15
 listRemoteAccessVpns=15
 updateRemoteAccessVpn=15
-
 
 addVpnUser=15
 removeVpnUser=15
@@ -501,7 +477,6 @@ replaceNetworkACLList=15
 listNetworkACLLists=15
 updateNetworkACLList=15
 
-
 #### Static route commands
 createStaticRoute=15
 deleteStaticRoute=15
@@ -537,11 +512,6 @@ createVirtualRouterElement=7
 configureVirtualRouterElement=7
 listVirtualRouterElements=7
 
-#### ovs commands
-createOvsElement=7
-configureOvsElement=7
-listOvsElements=7
-
 #### usage commands
 generateUsageRecords=1
 listUsageRecords=7
@@ -552,12 +522,6 @@ removeRawUsageRecords=1
 addTrafficMonitor=1
 deleteTrafficMonitor=1
 listTrafficMonitors=1
-
-#### Cisco Nexus 1000v Virtual Supervisor Module (VSM) commands
-deleteCiscoNexusVSM=1
-enableCiscoNexusVSM=1
-disableCiscoNexusVSM=1
-listCiscoNexusVSMs=1
 
 #### f5 big ip load balancer commands
 
@@ -572,23 +536,11 @@ deleteF5LoadBalancer=1
 listF5LoadBalancers=1
 listF5LoadBalancerNetworks=1
 
-#### juniper srx firewall commands
-addExternalFirewall=1
-deleteExternalFirewall=1
-listExternalFirewalls=1
-
 addSrxFirewall=1
 deleteSrxFirewall=1
 configureSrxFirewall=1
 listSrxFirewalls=1
 listSrxFirewallNetworks=1
-
-#### Palo Alto firewall commands
-addPaloAltoFirewall=1
-deletePaloAltoFirewall=1
-configurePaloAltoFirewall=1
-listPaloAltoFirewalls=1
-listPaloAltoFirewallNetworks=1
 
 #### netscaler load balancer commands
 addNetscalerLoadBalancer=1
@@ -611,14 +563,6 @@ listNiciraNvpDeviceNetworks=1
 
 addStratosphereSsp=1
 deleteStratoshereSsp=1
-
-#### nuage vsp commands
-
-addNuageVspDevice=1
-updateNuageVspDevice=1
-deleteNuageVspDevice=1
-listNuageVspDevices=1
-issueNuageVspResourceRequest=15
 
 #### host simulator commands
 
@@ -661,17 +605,6 @@ createVMSnapshot=15
 deleteVMSnapshot=15
 revertToVMSnapshot=15
 
-#### Baremetal commands
-addBaremetalHost=1
-addBaremetalPxeKickStartServer=1
-addBaremetalPxePingServer=1
-addBaremetalDhcp=1
-listBaremetalDhcp=1
-listBaremetalPxeServers=1
-addBaremetalRct=1
-deleteBaremetalRct=1
-listBaremetalRct=1
-
 #### New Load Balancer commands
 createLoadBalancer=15
 listLoadBalancers=15
@@ -683,23 +616,12 @@ configureInternalLoadBalancerElement=7
 createInternalLoadBalancerElement=7
 listInternalLoadBalancerElements=7
 
-
 #### Affinity group commands
 createAffinityGroup=15
 deleteAffinityGroup=15
 listAffinityGroups=15
 updateVMAffinityGroup=15
 listAffinityGroupTypes=15
-
-#### Cisco Vnmc commands
-addCiscoVnmcResource=1
-deleteCiscoVnmcResource=1
-listCiscoVnmcResources=1
-
-#### Cisco Asa1000v commands
-addCiscoAsa1000vResource=1
-deleteCiscoAsa1000vResource=1
-listCiscoAsa1000vResources=1
 
 #### portable public IP commands
 createPortableIpRange=1
@@ -737,7 +659,6 @@ ldapCreateAccount=3
 importLdapUsers=3
 linkDomainToLdap=3
 
-
 #### juniper-contrail commands
 createServiceInstance=1
 
@@ -752,15 +673,3 @@ addGloboDnsHost=1
 ### volume/template post upload
 getUploadParamsForVolume=15
 getUploadParamsForTemplate=15
-
-### Quota Service
-quotaStatement=15
-quotaBalance=15
-quotaSummary=15
-quotaUpdate=1
-quotaTariffList=15
-quotaTariffUpdate=1
-quotaCredits=1
-quotaEmailTemplateList=1
-quotaEmailTemplateUpdate=1
-quotaIsEnabled=15
